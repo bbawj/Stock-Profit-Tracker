@@ -12,4 +12,4 @@ A one-stop application for all your stocks so that you do not have to keep jumpi
 ### How to use
 1. Replace API_KEY in .env_sample to your own api key for Yahoo Finance. 
 2. Rename .env_sample to .env
-3. Run app.py
+3. Run app.exe
