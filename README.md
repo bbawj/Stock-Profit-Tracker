@@ -7,6 +7,8 @@ Powered by the Yahoo Finance API. Find it here: https://rapidapi.com/apidojo/api
 ### Motivation
 A one-stop application for all your stocks so that you do not have to keep jumping between different brokers and accounts to keep track of profits/losses
 
+<img src='images/img1.png' width ="600">
+
 ### How to use
 1. Replace API_KEY in .env_sample to your own api key for Yahoo Finance. 
 2. Rename .env_sample to .env
