@@ -435,7 +435,7 @@ class RemoveWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Remove Stock")
-        self.setMinimumSize(250,100)
+        self.setMinimumSize(400,100)
         mainlayout = QtWidgets.QVBoxLayout()
         self.index = QtWidgets.QLineEdit()
         self.index.setPlaceholderText("TSLA:US")
