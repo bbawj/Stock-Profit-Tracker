@@ -1,4 +1,4 @@
-# Stock-Profit-Tracker
+# Stock Profit Tracker
 
 A Python GUI application that helps you keep track of the profit/loss of the stocks you buy. 
 
