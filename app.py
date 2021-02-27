@@ -440,6 +440,7 @@ class RemoveWindow(QWidget):
         self.index = QtWidgets.QLineEdit()
         self.index.setPlaceholderText("TSLA:US")
         self.qty = QtWidgets.QSpinBox()
+        self.qty.setMaximum(9999)
         self.confirm = QtWidgets.QPushButton('Confirm')
         self.confirm.clicked.connect(self.passinfo)
         mainlayout.addWidget(QtWidgets.QLabel("Index:Region"))
