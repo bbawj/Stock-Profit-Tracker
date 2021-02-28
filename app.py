@@ -35,6 +35,7 @@ class Ui_MainWindow(object):
 "border-color: rgb(16, 21, 33);\n"
 "")
         MainWindow.setInputMethodHints(QtCore.Qt.ImhNone)
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.setupUi(MainWindow)
         self.load()
@@ -68,6 +69,7 @@ class Ui_MainWindow(object):
     def add_stock(self, text, price,qty):
 
         try:
+            qty = int(qty)
             self.index = text.split(":")[0].upper()
             print(self.index)
             self.region = text.split(":")[1].upper()
@@ -114,6 +116,7 @@ class Ui_MainWindow(object):
 
     def remove(self,text,qty):
         #print("test")
+        qty = int(qty)
         index = text.split(":")[0].upper()
         region = text.split(":")[1].upper()
         #print(self.stocklist)
@@ -290,11 +293,20 @@ class Ui_MainWindow(object):
         self.lineEdit_price.setText("")
         self.lineEdit_price.setObjectName("lineEdit_price")
         self.gridLayout.addWidget(self.lineEdit_price, 1, 2, 1, 1)
-        self.qtybox = QtWidgets.QSpinBox(self.frame)
-        self.qtybox.setStyleSheet("color: rgb(255, 255, 255);\n"
-"")
-        self.qtybox.setObjectName("qtybox")
-        self.gridLayout.addWidget(self.qtybox, 1, 3, 1, 1)
+        self.lineEdit_qty = QtWidgets.QLineEdit(self.frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEdit_qty.sizePolicy().hasHeightForWidth())
+        self.lineEdit_qty.setSizePolicy(sizePolicy)
+        self.lineEdit_qty.setMaximumSize(QtCore.QSize(50, 300))
+        self.lineEdit_qty.setStyleSheet("background: rgb(35, 40, 52);\n"
+"foreground: rgb(203, 204, 198);\n"
+"border: rgb(35, 40, 52);\n"
+"color: rgb(255, 255, 255);")
+        self.lineEdit_qty.setObjectName("lineEdit_qty")
+        self.gridLayout.addWidget(self.lineEdit_qty, 1, 3, 1, 1)
+        self.lineEdit_qty.setValidator(QtGui.QIntValidator(0,9999))
         self.button_add = QtWidgets.QPushButton(self.frame)
         font = QtGui.QFont()
         font.setFamily("Coves")
@@ -309,7 +321,7 @@ class Ui_MainWindow(object):
 
         #add button functionality
         self.button_add.clicked.connect(lambda: self.add_stock(self.lineEdit_index.text(),
-                                        self.lineEdit_price.text(),self.qtybox.value()))
+                                        self.lineEdit_price.text(),self.lineEdit_qty.text()))
 
         self.button_remove = QtWidgets.QPushButton(self.frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -439,8 +451,8 @@ class RemoveWindow(QWidget):
         mainlayout = QtWidgets.QVBoxLayout()
         self.index = QtWidgets.QLineEdit()
         self.index.setPlaceholderText("TSLA:US")
-        self.qty = QtWidgets.QSpinBox()
-        self.qty.setMaximum(9999)
+        self.qty = QtWidgets.QLineEdit()
+        self.qty.setValidator(QtGui.QIntValidator(0,9999))
         self.confirm = QtWidgets.QPushButton('Confirm')
         self.confirm.clicked.connect(self.passinfo)
         mainlayout.addWidget(QtWidgets.QLabel("Index:Region"))
@@ -453,7 +465,7 @@ class RemoveWindow(QWidget):
     def passinfo(self):
         self.mainwindow = Ui_MainWindow()
         try:
-            self.mainwindow.remove(self.index.text(),self.qty.value())
+            self.mainwindow.remove(self.index.text(),self.qty.text())
         except:
             error = QtWidgets.QMessageBox()
             error.setWindowTitle("Input Error")
@@ -474,7 +486,7 @@ if __name__ == "__main__":
     ui = Ui_MainWindow()
 
     ui.setupUi(MainWindow)
-
+    MainWindow.setWindowTitle("Stock Profit Tracker")
     MainWindow.show()
     sys.exit(app.exec_())
 
