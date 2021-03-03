@@ -9,8 +9,7 @@ A one-stop application for all your stocks so that you do not have to keep jumpi
 
 <img src='images/img1.png' width ="600">
 
-### How to use (installer)
-1. Run the installer under releases
-2. Replace API_KEY in .env_sample to your own api key for Yahoo Finance. 
-3. Rename .env_sample to .env
-4. Run app.exe
+### How to use
+1. Replace API_KEY in .env_sample to your own api key for Yahoo Finance. 
+2. Rename .env_sample to .env
+3. Run app.py
